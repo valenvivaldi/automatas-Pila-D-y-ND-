@@ -25,11 +25,14 @@ public static void main(String[] args) {
                         }
                         System.out.println(automata.to_dot());
 
-                        if(automata.accepts("ab")) {
-
-                                System.out.println("El AUTOMATA ACEPTO LA STRING");
+                        
+                        boolean exit =false;
+                        
+                        while (!exit){
+                        	exit =menu(automata);
+                        	
                         }
-
+                        
 
 
                 } catch (Exception e) {
@@ -42,6 +45,23 @@ public static void main(String[] args) {
                 System.out.println("Por favor ponga la ruta del archivo como parametro de Main");
         }
 
+}
+
+private static boolean menu(DFAPila automata) {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("3 - probar string");
+	System.out.println("4 - Salir");
+	int opcion = sc.nextInt();
+    sc.nextLine();
+    if(opcion==4){return false;}
+    if(opcion==3){
+    	System.out.println("introduzca el string para analizar su aceptacion ");
+    	System.out.println("");
+    	String s = sc.nextLine();
+    	automata.accepts(s);}
+    
+	
+	return true;
 }
 
 private static DFAPila interpretarInstrucciones(String[] instructions) throws Exception {
@@ -144,7 +164,7 @@ private static Quintuple<State, Character, Character, String, State> extraerTran
                 j++;
         }
 
-        System.out.println(linea.substring(i, j));
+        //System.out.println(linea.substring(i, j));
 
         State primerEstado =new State(linea.substring(i, j));
 
@@ -155,13 +175,13 @@ private static Quintuple<State, Character, Character, String, State> extraerTran
                 j++;
         }
 
-        System.out.println(linea.substring(i, j));
+        //System.out.println(linea.substring(i, j));
         State segundoEstado =new State(linea.substring(i, j));
 
         j+=8;
         i=j;
 
-        System.out.println(linea.charAt(i));
+        //System.out.println(linea.charAt(i));
         char primerCaracter =linea.charAt(i);
 
         i+=2;

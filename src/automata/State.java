@@ -19,7 +19,7 @@ public class State {
             return false;	
 	if (obj == this)
             return true;
-	System.out.println("this.name = '"+this.name+"'"+"obj.name = '"+((State) obj).name+"'");
+	//System.out.println("this.name = '"+this.name+"'"+"obj.name = '"+((State) obj).name+"'");
 	return this.name.equals(((State) obj).name);
     }
     
