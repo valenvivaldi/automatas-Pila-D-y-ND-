@@ -31,8 +31,8 @@ public DFAPila(
         Character stackInitial,
         State initial,
         Set<State> final_states)
-throws IllegalArgumentException
-{
+throws IllegalArgumentException{
+
         this.states = states;
         this.alphabet = alphabet;
         this.stackAlphabet = stackAlphabet;
