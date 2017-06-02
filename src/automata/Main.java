@@ -25,14 +25,14 @@ public static void main(String[] args) {
                         }
                         System.out.println(automata.to_dot());
 
-                        
+
                         boolean exit =false;
-                        
-                        while (!exit){
-                        	exit =menu(automata);
-                        	
+
+                        while (!exit) {
+                                exit =menu(automata);
+
                         }
-                        
+
 
 
                 } catch (Exception e) {
@@ -48,20 +48,21 @@ public static void main(String[] args) {
 }
 
 private static boolean menu(DFAPila automata) {
-	Scanner sc = new Scanner(System.in);
-	System.out.println("3 - probar string");
-	System.out.println("4 - Salir");
-	int opcion = sc.nextInt();
-    sc.nextLine();
-    if(opcion==4){return false;}
-    if(opcion==3){
-    	System.out.println("introduzca el string para analizar su aceptacion ");
-    	System.out.println("");
-    	String s = sc.nextLine();
-    	automata.accepts(s);}
-    
-	
-	return true;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("3 - probar string");
+        System.out.println("4 - Salir");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        if(opcion==4) {return false; }
+        if(opcion==3) {
+                System.out.println("introduzca el string para analizar su aceptacion ");
+                System.out.println("");
+                String s = sc.nextLine();
+                automata.accepts(s);
+        }
+
+
+        return true;
 }
 
 private static DFAPila interpretarInstrucciones(String[] instructions) throws Exception {
@@ -124,7 +125,7 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
                 while (iteradorDeltas.hasNext()) {
                         Quintuple<State, Character, Character, String, State> elemento = iteradorDeltas.next();
                         System.out.println(elemento.toString());
-                        
+
                         alfabeto.add(elemento.second());
                         alfabetoPila.add(elemento.third());
                         int indiceAuxiliar = 0;
