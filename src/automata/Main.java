@@ -23,9 +23,10 @@ public static void main(String[] args) {
                         if (automata == null) {
                                 System.out.println("el automata estaba mal escrito");
                         }
-                        System.out.println(automata.to_dot());
-
-
+                        System.out.println(automata.states.toString());
+                        automata.newState();
+                        System.out.println("prueba denewsatte");
+                        System.out.println(automata.states.toString());
                         boolean exit =false;
 
                         while (!exit) {
@@ -48,12 +49,14 @@ public static void main(String[] args) {
 }
 
 private static boolean menu(DFAPila automata) {
+        System.out.println("El automata actual es: ");
+        System.out.println(automata.to_dot());
         Scanner sc = new Scanner(System.in);
         System.out.println("3 - probar string");
         System.out.println("4 - Salir");
         int opcion = sc.nextInt();
         sc.nextLine();
-        if(opcion==4) {return false; }
+        if(opcion==4) {return true; }
         if(opcion==3) {
                 System.out.println("introduzca el string para analizar su aceptacion ");
                 System.out.println("");
@@ -81,6 +84,7 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
         System.out.println("instructions[0]:" + instructions[0]);
         if (instructions[0].matches("digraph")) {
                 System.out.println("empieza con dig");
+                State nuevoEstadoFinal=null;
                 while (i < instructions.length && instructions[i] != null) {
                         System.out.println("instruccion actual: |" + instructions[i]+"|");
 
@@ -91,7 +95,8 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
 
                         if (instructions[i].startsWith("inic->")) {
                                 estadoinicial = new State(""+instructions[i].substring(6));
-                                estados.add(estadoinicial);
+                                if(!estadoinicial.existeEnConjunto(estados)){estados.add(estadoinicial);}
+                                
                                 tienequesertransicion = false;
                                 System.out.println("Estado inicial encontrado!:"+ instructions[i].substring(6));
                                 System.out.println(estadoinicial.name());
@@ -99,10 +104,9 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
 
                         if (instructions[i].endsWith("[shape=doublecircle]")
                             && instructions[i].length() > 20) {
-                                estados.add(new State(instructions[i].substring(0,
-                                                                                instructions[i].length() - 20)));
-                                estadosfinales.add(new State(instructions[i].substring(0,
-                                                                                       instructions[i].length() - 20)));
+                        		nuevoEstadoFinal = new State(instructions[i].substring(0,instructions[i].length() - 20)); 
+                                if(!nuevoEstadoFinal.existeEnConjunto(estados)){estados.add(nuevoEstadoFinal);}
+                                if(!nuevoEstadoFinal.existeEnConjunto(estadosfinales)){estadosfinales.add(nuevoEstadoFinal);}
                                 tienequesertransicion = false;
                         }
                         System.out.println("el tienequesertransicion es:"+tienequesertransicion);
@@ -125,8 +129,10 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
                 while (iteradorDeltas.hasNext()) {
                         Quintuple<State, Character, Character, String, State> elemento = iteradorDeltas.next();
                         System.out.println(elemento.toString());
-
+                        if(!elemento.first().existeEnConjunto(estados)){estados.add(elemento.first());}
+                        if(!elemento.fifth().existeEnConjunto(estados)){estados.add(elemento.fifth());}
                         alfabeto.add(elemento.second());
+                        
                         alfabetoPila.add(elemento.third());
                         int indiceAuxiliar = 0;
                         while (indiceAuxiliar < elemento.fourth().length()) {

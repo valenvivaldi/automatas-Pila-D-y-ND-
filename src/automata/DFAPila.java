@@ -87,27 +87,16 @@ private State ejecutarTransicion(Quintuple<State, Character, Character, String, 
 
         //System.out.println("El quintuple es: "+quintupleCompatible.toString());
         char elementpop=stack.pop();
-
-
-
         String stringParaApilar =transicion.fourth();
         int i =stringParaApilar.length()-1;
-
-
         while(i>=0&&stringParaApilar.charAt(i)!=Lambda) {
                 if(stringParaApilar.charAt(i)==Joker) {stack.push(elementpop); }else{
                         stack.push(stringParaApilar.charAt(i));
                 }
-
-
                 i--;
         }
-
         System.out.println("Stack: "+stack.toString());
         return transicion.fifth();
-
-
-
 }
 
 
@@ -171,12 +160,32 @@ public boolean accepts(String cadena) {
 }
 
 public boolean rep_ok() {
-
-
-
-
         return true;
 }
 
+public State newState(){
+  int i=0;
+  State estado = new State("q"+i);
+System.out.println("nuevos posible estado: "+estado.toString());
+  while(this.existeEnEstados(estado)){
+    System.out.println("estado rechazado");
+    i++;
+    estado = new State("q"+i);
+    System.out.println("nuevos posible estado: "+estado.toString());
+  }
+  this.states.add(estado);
+  return estado;
+}
+
+ public boolean existeEnEstados(State elementoprueba){
+   boolean result=false;
+   Iterator<State> iterador = states.iterator();
+ while (iterador.hasNext()&&!result){
+	 State estadoiterador =iterador.next();
+   result = estadoiterador.equals(elementoprueba);
+ }
+
+   return result;
+ }
 
 }
