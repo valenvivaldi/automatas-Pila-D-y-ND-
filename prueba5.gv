@@ -2,11 +2,9 @@ digraph{
 inic[shape=point];
 inic->q0;
 
-q1->q2 [label="b/Z/Z"];
+q0->q1 [label="b/Z/Z"];
 q0->q0 [label="x/Z/Z"];
 
 
-
-q0->q1 [label="_/Z/Z"];
-q2[shape=doublecircle];
+q1[shape=doublecircle];
 }
