@@ -24,7 +24,8 @@ public static void main(String[] args) {
                                 System.out.println("el automata estaba mal escrito");
                         }
                         System.out.println(automata.to_dot());
-                        automata.toEstadoFinal();
+                        automata.toPilaVacia();
+                        
                         System.out.println("termino to Estado Final");
 
                         System.out.println(automata.states.toString());

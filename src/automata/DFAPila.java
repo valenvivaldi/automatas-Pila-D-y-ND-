@@ -189,6 +189,38 @@ public boolean existeEnEstados(State elementoprueba){
 }
 
 public void toPilaVacia(){
+    System.out.println("va a crear los dos estados");
+    State nuevoinicial = newState();
+    State nuevofinal =  newState();
+    System.out.println("creo los estados");
+
+    Character caracterinicialnuevo = encontrarCaracterNoUsado();
+    Iterator<State> iteradorEstados =this.finalStates.iterator();
+    Quintuple<State, Character,Character,String, State> nuevatransicion =null;
+    State actualIter =null;
+    this.stackAlphabet.add(caracterinicialnuevo);
+
+    while(iteradorEstados.hasNext()) {
+            System.out.println("while to pila vacia");
+            actualIter = iteradorEstados.next();
+            if(!actualIter.equals(nuevofinal)&&!actualIter.equals(nuevoinicial)) {
+                    nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,Joker,""+Lambda,nuevofinal);
+                    this.transitions.add(nuevatransicion);
+            }
+    }
+    
+    
+    String strNuevaTrans = ""+this.stackInitial+""+caracterinicialnuevo;
+    nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevoinicial,Lambda,caracterinicialnuevo,strNuevaTrans,this.initial);
+    this.transitions.add(nuevatransicion);
+    
+    nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevofinal,Lambda,Joker,""+Lambda,nuevofinal);
+    this.transitions.add(nuevatransicion);
+    
+    this.finalStates.clear();
+    
+    this.initial=nuevoinicial;
+    this.stackInitial=caracterinicialnuevo;
 }
 
 public void toEstadoFinal(){
@@ -211,8 +243,6 @@ public void toEstadoFinal(){
                         nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,caracterinicialnuevo,""+Lambda,nuevofinal);
                         this.transitions.add(nuevatransicion);
                 }
-
-
         }
         String strNuevaTrans = ""+this.stackInitial+""+caracterinicialnuevo;
         nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevoinicial,Lambda,caracterinicialnuevo,strNuevaTrans,this.initial);
@@ -233,6 +263,4 @@ private Character encontrarCaracterNoUsado() {
         }
         return c;
 }
-
-
 }
