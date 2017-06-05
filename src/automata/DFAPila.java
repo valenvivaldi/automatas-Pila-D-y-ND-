@@ -195,15 +195,16 @@ public void toPilaVacia(){
     System.out.println("creo los estados");
 
     Character caracterinicialnuevo = encontrarCaracterNoUsado();
-    Iterator<State> iteradorEstados =this.finalStates.iterator();
+    
     Quintuple<State, Character,Character,String, State> nuevatransicion =null;
     State actualIter =null;
     this.stackAlphabet.add(caracterinicialnuevo);
-
+    Iterator<State> iteradorEstados =this.finalStates.iterator();
     while(iteradorEstados.hasNext()) {
             System.out.println("while to pila vacia");
             actualIter = iteradorEstados.next();
-            if(!actualIter.equals(nuevofinal)&&!actualIter.equals(nuevoinicial)) {
+            if((!actualIter.equals(nuevofinal))&&(!actualIter.equals(nuevoinicial))) {
+            	System.out.println("ENTRO AL IF TOpILAVACIA()");
                     nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,Joker,""+Lambda,nuevofinal);
                     this.transitions.add(nuevatransicion);
             }
@@ -221,6 +222,10 @@ public void toPilaVacia(){
     
     this.initial=nuevoinicial;
     this.stackInitial=caracterinicialnuevo;
+
+    System.out.println("EJECUCION DEL ALGORITMO DE  ESTADO FINAL A PILA VACIA ! \n EL AUTOMATA RESULTANTE ES:");
+    System.out.println(this.to_dot());
+
 }
 
 public void toEstadoFinal(){
@@ -250,6 +255,9 @@ public void toEstadoFinal(){
         this.finalStates.add(nuevofinal);
         this.initial=nuevoinicial;
         this.stackInitial=caracterinicialnuevo;
+
+        System.out.println("EJECUCION DEL ALGORITMO DE PILA VACIA A ESTADO FINAL! \n EL AUTOMATA RESULTANTE ES:");
+        System.out.println(this.to_dot());
 }
 
 

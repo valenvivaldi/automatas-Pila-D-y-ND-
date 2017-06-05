@@ -26,7 +26,7 @@ public static void main(String[] args) {
                         System.out.println(automata.to_dot());
                         automata.toPilaVacia();
                         
-                        System.out.println("termino to Estado Final");
+                        System.out.println("termino to pila vacia");
 
                         System.out.println(automata.states.toString());
 
