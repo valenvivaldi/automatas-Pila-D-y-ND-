@@ -31,7 +31,7 @@ public DFAPila(
         Character stackInitial,
         State initial,
         Set<State> final_states)
-throws IllegalArgumentException{
+throws IllegalArgumentException {
 
         this.states = states;
         this.alphabet = alphabet;
@@ -164,28 +164,75 @@ public boolean rep_ok() {
 }
 
 public State newState(){
-  int i=0;
-  State estado = new State("q"+i);
-System.out.println("nuevos posible estado: "+estado.toString());
-  while(this.existeEnEstados(estado)){
-    System.out.println("estado rechazado");
-    i++;
-    estado = new State("q"+i);
-    System.out.println("nuevos posible estado: "+estado.toString());
-  }
-  this.states.add(estado);
-  return estado;
+        int i=0;
+        State estado = new State("q"+i);
+        System.out.println("nuevos posible estado: "+estado.toString());
+        while(this.existeEnEstados(estado)) {
+                System.out.println("estado rechazado");
+                i++;
+                estado = new State("q"+i);
+                System.out.println("nuevos posible estado: "+estado.toString());
+        }
+        this.states.add(estado);
+        return estado;
 }
 
- public boolean existeEnEstados(State elementoprueba){
-   boolean result=false;
-   Iterator<State> iterador = states.iterator();
- while (iterador.hasNext()&&!result){
-	 State estadoiterador =iterador.next();
-   result = estadoiterador.equals(elementoprueba);
- }
+public boolean existeEnEstados(State elementoprueba){
+        boolean result=false;
+        Iterator<State> iterador = states.iterator();
+        while (iterador.hasNext()&&!result) {
+                State estadoiterador =iterador.next();
+                result = estadoiterador.equals(elementoprueba);
+        }
 
-   return result;
- }
+        return result;
+}
+
+public void toPilaVacia(){
+}
+
+public void toEstadoFinal(){
+        System.out.println("va a crear los dos estados");
+
+        State nuevoinicial = newState();
+        State nuevofinal =  newState();
+        System.out.println("creo los estados");
+
+        Character caracterinicialnuevo = encontrarCaracterNoUsado();
+        Iterator<State> iteradorEstados =this.states.iterator();
+        Quintuple<State, Character,Character,String, State> nuevatransicion =null;
+        State actualIter =null;
+        this.stackAlphabet.add(caracterinicialnuevo);
+
+        while(iteradorEstados.hasNext()) {
+                System.out.println("while toEStadoFinal");
+                actualIter = iteradorEstados.next();
+                if(!actualIter.equals(nuevofinal)&&!actualIter.equals(nuevoinicial)) {
+                        nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,caracterinicialnuevo,""+Lambda,nuevofinal);
+                        this.transitions.add(nuevatransicion);
+                }
+
+
+        }
+        String strNuevaTrans = ""+this.stackInitial+""+caracterinicialnuevo;
+        nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevoinicial,Lambda,caracterinicialnuevo,strNuevaTrans,this.initial);
+        this.transitions.add(nuevatransicion);
+        this.finalStates.add(nuevofinal);
+        this.initial=nuevoinicial;
+        this.stackInitial=caracterinicialnuevo;
+}
+
+
+private Character encontrarCaracterNoUsado() {
+        Character c =65;
+        System.out.println("BUSCANDO CARACTERES:");
+        System.out.println(c);
+        while(this.stackAlphabet.contains(c)) {
+                c++;
+                System.out.println(c);
+        }
+        return c;
+}
+
 
 }

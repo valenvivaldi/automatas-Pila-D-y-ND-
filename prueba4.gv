@@ -1,0 +1,11 @@
+digraph{
+inic[shape=point];
+inic->q0;
+
+q0->q0 [label="a/Z/A"];
+q0->q0 [label="a/A/AA"];
+q0->q1 [label="_/A/_"];
+q1->q1 [label="b/A/_"];
+q1->q2 [label="_/Z/_"]
+
+}

@@ -23,10 +23,19 @@ public static void main(String[] args) {
                         if (automata == null) {
                                 System.out.println("el automata estaba mal escrito");
                         }
+                        System.out.println(automata.to_dot());
+                        automata.toEstadoFinal();
+                        System.out.println("termino to Estado Final");
+
                         System.out.println(automata.states.toString());
-                        automata.newState();
-                        System.out.println("prueba denewsatte");
+
+                        System.out.println(automata.finalStates.toString());
+
+
+                        System.out.println(automata.transitions.toString());
+
                         System.out.println(automata.states.toString());
+                        System.out.println(automata.to_dot());
                         boolean exit =false;
 
                         while (!exit) {
@@ -95,8 +104,8 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
 
                         if (instructions[i].startsWith("inic->")) {
                                 estadoinicial = new State(""+instructions[i].substring(6));
-                                if(!estadoinicial.existeEnConjunto(estados)){estados.add(estadoinicial);}
-                                
+                                if(!estadoinicial.existeEnConjunto(estados)) {estados.add(estadoinicial); }
+
                                 tienequesertransicion = false;
                                 System.out.println("Estado inicial encontrado!:"+ instructions[i].substring(6));
                                 System.out.println(estadoinicial.name());
@@ -104,9 +113,9 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
 
                         if (instructions[i].endsWith("[shape=doublecircle]")
                             && instructions[i].length() > 20) {
-                        		nuevoEstadoFinal = new State(instructions[i].substring(0,instructions[i].length() - 20)); 
-                                if(!nuevoEstadoFinal.existeEnConjunto(estados)){estados.add(nuevoEstadoFinal);}
-                                if(!nuevoEstadoFinal.existeEnConjunto(estadosfinales)){estadosfinales.add(nuevoEstadoFinal);}
+                                nuevoEstadoFinal = new State(instructions[i].substring(0,instructions[i].length() - 20));
+                                if(!nuevoEstadoFinal.existeEnConjunto(estados)) {estados.add(nuevoEstadoFinal); }
+                                if(!nuevoEstadoFinal.existeEnConjunto(estadosfinales)) {estadosfinales.add(nuevoEstadoFinal); }
                                 tienequesertransicion = false;
                         }
                         System.out.println("el tienequesertransicion es:"+tienequesertransicion);
@@ -129,10 +138,10 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
                 while (iteradorDeltas.hasNext()) {
                         Quintuple<State, Character, Character, String, State> elemento = iteradorDeltas.next();
                         System.out.println(elemento.toString());
-                        if(!elemento.first().existeEnConjunto(estados)){estados.add(elemento.first());}
-                        if(!elemento.fifth().existeEnConjunto(estados)){estados.add(elemento.fifth());}
+                        if(!elemento.first().existeEnConjunto(estados)) {estados.add(elemento.first()); }
+                        if(!elemento.fifth().existeEnConjunto(estados)) {estados.add(elemento.fifth()); }
                         alfabeto.add(elemento.second());
-                        
+
                         alfabetoPila.add(elemento.third());
                         int indiceAuxiliar = 0;
                         while (indiceAuxiliar < elemento.fourth().length()) {

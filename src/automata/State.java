@@ -17,25 +17,25 @@ public String name() {
 }
 
 public boolean existeEnConjunto(Set<State> conjunto){
-	boolean result =false;
-	Iterator<State> iterador = conjunto.iterator();
-	while(iterador.hasNext()&& !result){
-		System.out.println("iteracion existeconjunto");
-		result= iterador.next().equals(this);
-	}
-	
-	return result;
+        boolean result =false;
+        Iterator<State> iterador = conjunto.iterator();
+        while(iterador.hasNext()&& !result) {
+                System.out.println("iteracion existeconjunto");
+                result= iterador.next().equals(this);
+        }
+
+        return result;
 }
 
 
 
 public boolean equals(Object obj) {
-        if (!(obj instanceof State)){
-        	
-		System.out.println("no es instancia de State");
-		return false;
+        if (!(obj instanceof State)) {
+
+                System.out.println("no es instancia de State");
+                return false;
         }
-                
+
         if (obj == this)
                 return true;
         System.out.println("this.name = '"+this.name+"'"+"obj.name = '"+((State) obj).name+"'");
