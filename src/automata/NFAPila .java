@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import utils.Quintuple;
 
-public final class DFAPila extends AP {
+public final class NFAPila extends AP {
 
 private Object nroStates[];
 private Stack<Character> stack;       //the stack of the automaton
@@ -195,7 +195,7 @@ public void toPilaVacia(){
     //System.out.println("creo los estados");
 
     Character caracterinicialnuevo = encontrarCaracterNoUsado();
-    
+
     Quintuple<State, Character,Character,String, State> nuevatransicion =null;
     State actualIter =null;
     this.stackAlphabet.add(caracterinicialnuevo);
@@ -209,17 +209,17 @@ public void toPilaVacia(){
                     this.transitions.add(nuevatransicion);
             }
     }
-    
-    
+
+
     String strNuevaTrans = ""+this.stackInitial+""+caracterinicialnuevo;
     nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevoinicial,Lambda,caracterinicialnuevo,strNuevaTrans,this.initial);
     this.transitions.add(nuevatransicion);
-    
+
     nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevofinal,Lambda,Joker,""+Lambda,nuevofinal);
     this.transitions.add(nuevatransicion);
-    
+
     this.finalStates.clear();
-    
+
     this.initial=nuevoinicial;
     this.stackInitial=caracterinicialnuevo;
 
