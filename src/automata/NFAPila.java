@@ -23,7 +23,7 @@ private Stack<Character> stack;       //the stack of the automaton
  * @param final_states - acceptance states of the automaton
  * @throws IllegalArgumentException
  */
-public DFAPila(
+public NFAPila(
         Set<State> states,
         Set<Character> alphabet,
         Set<Character> stackAlphabet,
@@ -271,4 +271,15 @@ private Character encontrarCaracterNoUsado() {
         }
         return c;
 }
+
+public static NFAPila gramaticaToAutomataPila(String[] gramatica){
+	return null;
+	
+	
+	
+	
+}
+
+
+
 }

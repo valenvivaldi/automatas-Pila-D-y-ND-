@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import NFAPila;
+
 class Main {
 public static void main(String[] args) {
         if (args.length > 0) {
@@ -41,12 +43,52 @@ public static void main(String[] args) {
                 }
 
         } else {
-                System.out.println("Por favor ponga la ruta del archivo como parametro de Main");
+                System.out.println("Por favor ponga la ruta del archivo como parametro de Main para cargar el dot");
+                NFAPila automata = leerGramatica();
+                boolean exit =false;
+
+                while (!exit) {
+                        exit =menu(automata);
+
+                }
+
+
+
         }
 
 }
 
-private static boolean menu(DFAPila automata) {
+private static NFAPila leerGramatica() {
+	System.out.println("Ingrese la ruta del archivo de texto donde esta especificada la gramatica");
+	Scanner sc = new Scanner(System.in);
+	String filename =sc.nextLine();
+	System.out.println(filename);
+    
+    try {
+            sc = new Scanner(new FileReader(filename));
+    } catch (Exception e) {
+            System.out.println("el archivo no existe o no se puede leer");
+    }
+    StringBuilder sb = new StringBuilder();
+    String[] gramatica = new String[20];
+    int i=0;
+    while (sc.hasNext()) {
+            gramatica[i]=sc.next();
+            i++;
+    }
+    
+    sc.close();
+    
+    NFAPila autom = NFAPila.gramaticaToAutomataPila(gramatica);
+    
+    return autom;
+	
+	
+	
+	return null;
+}
+
+private static boolean menu(automata.NFAPila automata) {
         System.out.println("El automata actual es: ");
         System.out.println(automata.to_dot());
         Scanner sc = new Scanner(System.in);
@@ -56,6 +98,7 @@ private static boolean menu(DFAPila automata) {
                 System.out.println("4 - Salir");
         int opcion = sc.nextInt();
         sc.nextLine();
+        sc.close();
         if(opcion==4) {return true; }
         if(opcion==2) {
         	automata.toPilaVacia();
@@ -76,7 +119,7 @@ private static boolean menu(DFAPila automata) {
         return true;
 }
 
-private static DFAPila interpretarInstrucciones(String[] instructions) throws Exception {
+private static NFAPila interpretarInstrucciones(String[] instructions) throws Exception {
         //System.out.println("empezo interpretar");
         Set<Quintuple<State, Character, Character, String, State> > transiciones = new HashSet<Quintuple<State, Character, Character, String, State> >();
         Set<State> estados = new HashSet<State>();
@@ -163,7 +206,7 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
 
 
 
-                return new DFAPila(estados, alfabeto, alfabetoPila, transiciones,
+                return new NFAPila(estados, alfabeto, alfabetoPila, transiciones,
                                    caracterInicialPila, estadoinicial, estadosfinales);
 
         }
