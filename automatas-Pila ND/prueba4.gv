@@ -2,7 +2,7 @@ digraph{
 inic[shape=point];
 inic->q0;
 
-q0->q0 [label="x/Z/A"];
+q0->q0 [label="x/Z/Z"];
 q0->q1 [label="b/Z/_"];
 
 

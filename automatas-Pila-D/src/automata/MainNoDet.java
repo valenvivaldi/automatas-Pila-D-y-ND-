@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import NFAPila;
 
-class Main {
+class MainNoDet {
 public static void main(String[] args) {
         if (args.length > 0) {
 
@@ -73,7 +73,8 @@ private static NFAPila leerGramatica() {
     String[] gramatica = new String[20];
     int i=0;
     while (sc.hasNext()) {
-            gramatica[i]=sc.next();
+            gramatica[i]=sc.next().replaceAll("\\s", "");
+;
             i++;
     }
     

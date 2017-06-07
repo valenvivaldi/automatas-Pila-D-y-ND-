@@ -1,5 +1,6 @@
 package automata;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Stack;
@@ -273,12 +274,59 @@ private Character encontrarCaracterNoUsado() {
 }
 
 public static NFAPila gramaticaToAutomataPila(String[] gramatica){
+	int i=0;
+	Set<Quintuple<State, Character, Character, String, State> > transiciones = new HashSet<Quintuple<State, Character, Character, String, State> >();
+    Set<State> estados = new HashSet<State>();
+    Set<Character> alfabeto = new HashSet<Character>();
+    Set<Character> alfabetoPila = new HashSet<Character>();
+    Set<State> estadosfinales = new HashSet<State>();
+	estados.add(new State("q0"));
+	String[] renglon =null;
+    while (i<gramatica.length){
+		renglon = interpretarRenglon(gramatica[i]);
+		System.out.println(renglon.toString());
+		
+		i++;
+	}
+	
+	
 	return null;
 	
 	
 	
 	
 }
+
+
+private static String[] interpretarRenglon(String r) {
+	int i =0;
+	int j =0;
+	int indexOfArray=0;
+	String[] result= new String[30];
+	while(j<r.length() && r.charAt(j)!='-'){
+		j++;
+	}
+	result[indexOfArray]=r.substring(i, j);
+	indexOfArray++;
+	i=j+2;
+	j=i;
+	while (j < r.length()-1) {
+        while (j < r.length() && r.charAt(j) != '|'
+               && r.charAt(j) != ';') {
+                j++;
+        }
+
+        
+		
+		result[indexOfArray] = r.substring(i, j);
+        indexOfArray++;
+        j++;
+        i = j;
+}
+	if(result[0]==null ){return null;}
+	return result;
+}
+
 
 
 

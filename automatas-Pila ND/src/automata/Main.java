@@ -12,19 +12,21 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-class MainDet {
+
+
+class Main {
 public static void main(String[] args) {
         if (args.length > 0) {
 
                 String[] instrucciones = leerArchivo(args[0]);
                 //System.out.println(Arrays.toString(instrucciones));
                 try {
-                        DFAPila automata = interpretarInstrucciones(instrucciones);
+                        NFAPila automata = interpretarInstrucciones(instrucciones);
                         if (automata == null) {
                                 System.out.println("el automata estaba mal escrito");
                         }
                        // System.out.println(automata.to_dot());
-                        
+
                         boolean exit =false;
 
                         while (!exit) {
@@ -35,49 +37,98 @@ public static void main(String[] args) {
 
 
                 } catch (Exception e) {
-                        System.out.println("Ha ocurrido un error");
+                        System.out.println("Ha ocurrido un error en la construccion del automata");
                         System.out.println(e.getMessage());
-                        System.out.println(e.getLocalizedMessage());
 
                 }
 
         } else {
-                System.out.println("Por favor ponga la ruta del archivo como parametro de Main");
+                System.out.println("Por favor ponga la ruta del archivo como parametro de Main para cargar el dot");
+                NFAPila automata = leerGramatica();
+                boolean exit =false;
+
+                while (!exit) {
+                        exit =menu(automata);
+
+                }
+
+
+
         }
 
 }
 
-private static boolean menu(DFAPila automata) {
+private static NFAPila leerGramatica() {
+	System.out.println("Ingrese la ruta del archivo de texto donde esta especificada la gramatica");
+	Scanner sc = new Scanner(System.in);
+	String filename =sc.nextLine();
+	System.out.println(filename);
+    
+    try {
+            sc = new Scanner(new FileReader(filename));
+    } catch (Exception e) {
+            System.out.println("el archivo no existe o no se puede leer");
+    }
+    StringBuilder sb = new StringBuilder();
+    String[] gramatica = new String[20];
+    int i=0;
+    while (sc.hasNext()) {
+            gramatica[i]=sc.next();
+;			System.out.println("se guardo en gramatica "+gramatica[i]);
+            i++;
+    }
+    
+    sc.close();
+    
+    NFAPila autom = NFAPila.gramaticaToAutomataPila(gramatica);
+    
+    return autom;
+	
+	
+	
+
+}
+
+private static boolean menu(automata.NFAPila automata) {
         System.out.println("El automata actual es: ");
         System.out.println(automata.to_dot());
-        Scanner sc = new Scanner(System.in);
+        int opcion=0;
+        Scanner scan = new Scanner(System.in);
         System.out.println("1 - probar string");
         System.out.println("2 - Ejecutar algoritmo de EF a PV");
         System.out.println("3 - Ejecutar algoritmo de PV a EF");
                 System.out.println("4 - Salir");
-        int opcion = sc.nextInt();
-        sc.nextLine();
-        if(opcion==4) {return true; }
+        if(scan.hasNextInt()){opcion = scan.nextInt();}
+        
+        if(opcion==4) {
+        	
+        	return true; }
         if(opcion==2) {
         	automata.toPilaVacia();
-        	return true; 
+        	
+
+        	return true;
         	}
         if(opcion==3) {
         	automata.toEstadoFinal();
-        	return true; 
+        	
+
+        	return true;
         	}
         if(opcion==1) {
                 System.out.println("introduzca el string para analizar su aceptacion ");
                 System.out.println("");
-                String s = sc.nextLine();
+                scan= new Scanner(System.in);
+                String s = scan.nextLine();
                 automata.accepts(s);
+                
         }
 
 
         return true;
 }
 
-private static DFAPila interpretarInstrucciones(String[] instructions) throws Exception {
+private static NFAPila interpretarInstrucciones(String[] instructions) throws Exception {
         //System.out.println("empezo interpretar");
         Set<Quintuple<State, Character, Character, String, State> > transiciones = new HashSet<Quintuple<State, Character, Character, String, State> >();
         Set<State> estados = new HashSet<State>();
@@ -164,7 +215,7 @@ private static DFAPila interpretarInstrucciones(String[] instructions) throws Ex
 
 
 
-                return new DFAPila(estados, alfabeto, alfabetoPila, transiciones,
+                return new NFAPila(estados, alfabeto, alfabetoPila, transiciones,
                                    caracterInicialPila, estadoinicial, estadosfinales);
 
         }
