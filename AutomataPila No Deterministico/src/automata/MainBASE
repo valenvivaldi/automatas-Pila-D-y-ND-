@@ -1,0 +1,13 @@
+package automata;
+
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Stack;
+
+import utils.Quintuple;
+class Main {
+  public static void main(String[] args) {
+          
+      }
+
+}

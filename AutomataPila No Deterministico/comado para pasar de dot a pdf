@@ -1,0 +1,1 @@
+dot -Tps automata.gv -o automata.jpg
