@@ -1,0 +1,22 @@
+Alumno: Valentin vivaldi
+
+Instrucciones para automata pila DETERMINISTICO:
+- Para leer desde archivo dot: ejecutar el main pasando como parametro la ruta del archivo doy
+ejemplo:
+ java Main "ruta/del/archivo.gv"
+ 
+Instrucciones para automata pila NO DETERMINISTICO:
+- Para leer desde archivo dot: ejecutar el main pasando como parametro la ruta del archivo doy
+ejemplo:
+ java Main "ruta/del/archivo.gv"
+ 
+- Para ejecutar el algoritmo de gramatica a automata pila: ejecutar el main sin parametro, luego 
+el programa le pedira la ruta del archivo de texto donde este escrita la gramatica
+ 
+ La gramatica debe etar escrito de la siguiente manera ()
+ 
+ S->a|Aa;  <-------- prestar atencion! sin espacios y con ; al final!!!
+ 
+En la carpera de cada tipo de automata habran algunos ejemplos escritos en dot y gramaticas
+
+(los ejemplos de gramaticas)

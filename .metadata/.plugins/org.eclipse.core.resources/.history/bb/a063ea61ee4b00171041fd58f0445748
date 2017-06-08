@@ -19,11 +19,13 @@ public static void main(String[] args) {
         if (args.length > 0) {
 
                 String[] instrucciones = leerArchivo(args[0]);
+                //System.out.println(Arrays.toString(instrucciones));
                 try {
                         NFAPila automata = interpretarInstrucciones(instrucciones);
                         if (automata == null) {
                                 System.out.println("el automata estaba mal escrito");
                         }
+                       // System.out.println(automata.to_dot());
 
                         boolean exit =false;
 
@@ -44,8 +46,7 @@ public static void main(String[] args) {
                 System.out.println("Por favor ponga la ruta del archivo como parametro de Main para cargar el dot");
                 NFAPila automata = leerGramatica();
                 boolean exit =true;
-                System.out.println("El automata leido por la gramatica es:");
-                System.out.println(automata.to_dot());
+
                 while (!exit) {
                         exit =menu(automata);
 
@@ -128,23 +129,27 @@ private static boolean menu(automata.NFAPila automata) {
 }
 
 private static NFAPila interpretarInstrucciones(String[] instructions) throws Exception {
-        
+        //System.out.println("empezo interpretar");
         Set<Quintuple<State, Character, Character, String, State> > transiciones = new HashSet<Quintuple<State, Character, Character, String, State> >();
         Set<State> estados = new HashSet<State>();
         Set<Character> alfabeto = new HashSet<Character>();
         Set<Character> alfabetoPila = new HashSet<Character>();
         Set<State> estadosfinales = new HashSet<State>();
-        
+        //System.out.println("ya creo los sets");
         int i = 1;
         boolean tienequesertransicion = true;
         State estadoinicial = null;
         Quintuple<State, Character, Character, String, State> nuevatransicion = null;
         Character caracterInicialPila = 'Z';
+        //System.out.println("instructions[0]:" + instructions[0]);
         if (instructions[0].matches("digraph")) {
+               // System.out.println("empieza con dig");
                 State nuevoEstadoFinal=null;
                 while (i < instructions.length && instructions[i] != null) {
+                      //  System.out.println("instruccion actual: |" + instructions[i]+"|");
 
                         if (instructions[i].startsWith("inic[shape=point")||instructions[i].replaceAll("\\s", "").length()==0) {
+                              //  System.out.println("HOLA,ESTOSOLOTIENEQUEAPARECERALFINAL");
                                 tienequesertransicion = false;
                         }
 
@@ -153,7 +158,8 @@ private static NFAPila interpretarInstrucciones(String[] instructions) throws Ex
                                 if(!estadoinicial.existeEnConjunto(estados)) {estados.add(estadoinicial); }
 
                                 tienequesertransicion = false;
-                              
+                              //  System.out.println("Estado inicial encontrado!:"+ instructions[i].substring(6));
+                               // System.out.println(estadoinicial.name());
                         }
 
                         if (instructions[i].endsWith("[shape=doublecircle]")
@@ -163,19 +169,26 @@ private static NFAPila interpretarInstrucciones(String[] instructions) throws Ex
                                 if(!nuevoEstadoFinal.existeEnConjunto(estadosfinales)) {estadosfinales.add(nuevoEstadoFinal); }
                                 tienequesertransicion = false;
                         }
+                        //System.out.println("el tienequesertransicion es:"+tienequesertransicion);
                         if (tienequesertransicion) {
+                                //System.out.println("LA INSTRUCCION ES UNA TRANSICION ");
                                 nuevatransicion = extraerTransicion(instructions[i]);
                                 if (nuevatransicion != null) {
+                                        //System.out.println("LA TRANSICION EXTRAIDA ES DISTINTA DE NULL");
                                         transiciones.add(nuevatransicion);
                                 }
                         }
 
+                       // System.out.println("paso los if, fin instruccion:" + i);
                         i++;
                         tienequesertransicion = true;
                 }
+               // System.out.println("salio del reconocedor de strings");
                 Iterator<Quintuple<State, Character, Character, String, State> > iteradorDeltas = transiciones.iterator();
+                //System.out.println("Se creo el iterador que recorrera el set de quintuples para armar los alfabetos");
                 while (iteradorDeltas.hasNext()) {
                         Quintuple<State, Character, Character, String, State> elemento = iteradorDeltas.next();
+                        //System.out.println(elemento.toString());
                         if(!elemento.first().existeEnConjunto(estados)) {estados.add(elemento.first()); }
                         if(!elemento.fifth().existeEnConjunto(estados)) {estados.add(elemento.fifth()); }
                         alfabeto.add(elemento.second());
@@ -187,7 +200,19 @@ private static NFAPila interpretarInstrucciones(String[] instructions) throws Ex
                                 indiceAuxiliar++;
                         }
                 }
-               
+               // System.out.println("termino el seteo de los alfabetos");
+               // System.out.println("ESTADOS:");
+                //System.out.println(estados.toString());
+                //System.out.println("ALFABETO:");
+                //System.out.println(alfabeto.toString());
+                //System.out.println("ALFABETO PILA:");
+                //System.out.println(alfabetoPila.toString());
+
+
+               // System.out.println("DELTA:");
+                //System.out.println(transiciones.toString());
+
+
 
 
                 return new NFAPila(estados, alfabeto, alfabetoPila, transiciones,
@@ -206,6 +231,7 @@ private static Quintuple<State, Character, Character, String, State> extraerTran
                 j++;
         }
 
+        //System.out.println(linea.substring(i, j));
 
         State primerEstado =new State(linea.substring(i, j));
 
@@ -216,15 +242,18 @@ private static Quintuple<State, Character, Character, String, State> extraerTran
                 j++;
         }
 
+        //System.out.println(linea.substring(i, j));
         State segundoEstado =new State(linea.substring(i, j));
 
         j+=8;
         i=j;
 
+        //System.out.println(linea.charAt(i));
         char primerCaracter =linea.charAt(i);
 
         i+=2;
 
+        //System.out.println(linea.charAt(i));
         char segundoCaracter =linea.charAt(i);
 
         i+=2;
@@ -232,6 +261,7 @@ private static Quintuple<State, Character, Character, String, State> extraerTran
         while (j < linea.length() && linea.charAt(j) != '"') {
                 j++;
         }
+        //System.out.println(linea.substring(i, j));
         String primerString =linea.substring(i, j);
 
 
@@ -274,6 +304,7 @@ public static String[] extraerLineas(String linea) {
                 j++;
                 i = j;
         }
+        // System.out.println(Arrays.toString(lineas));
         return lineas;
 }
 

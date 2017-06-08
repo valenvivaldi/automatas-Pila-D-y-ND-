@@ -58,7 +58,7 @@ throws IllegalArgumentException {
         if (!rep_ok()) {
                 throw new  IllegalArgumentException();
         }
-        System.out.println("Is a NFA Pila");
+        System.out.println("Is a DFA Pila");
 }
 
 
@@ -72,6 +72,7 @@ throws IllegalArgumentException {
 @Override
 public boolean accepts(String cadena){
 	Stack<Character> stackaccept = (Stack<Character>) this.stack.clone();
+	System.out.println("COMIENZA EL ACCEPT, IMPRIMO EL STACK CLONADO");
 	System.out.println(stackaccept.toString());
 	Configuracion configuracion = new Configuracion(this.initial, this.stack, cadena, 0);
 	
@@ -81,6 +82,7 @@ public boolean accepts(String cadena){
 }
 
 private boolean acceptsRECURSIVE(Configuracion configuracion, int nivel) {
+	System.out.println("configuracion actual" + configuracion.toString());
 	
 	
 	
@@ -95,10 +97,18 @@ private boolean acceptsRECURSIVE(Configuracion configuracion, int nivel) {
 	}
 	
 	
+	
+	
+	if(configuracion.indicecadena==configuracion.cadena.length()){
+		return false;
+		
+	}
+	
 	if(nivel<0){
 		
 		return false;
 	}	
+	System.out.println("No es caso base! a generar proximas config");
 	LinkedList<Configuracion> listaProximos = proximasConfiguraciones(configuracion);
 	
 	if(listaProximos.isEmpty()){
@@ -126,8 +136,6 @@ private LinkedList<Configuracion> proximasConfiguraciones(Configuracion configur
 	Quintuple<State, Character,Character,String, State> elementoActual;
 	String cadena =configuracion.cadena;
 	int indicecadena =configuracion.indicecadena;
-	if(configuracion.stackactual.isEmpty()){return result;}
-	
 	Character topePila =configuracion.stackactual.peek();
 	
 	boolean coincide1;
@@ -140,22 +148,25 @@ private LinkedList<Configuracion> proximasConfiguraciones(Configuracion configur
 		elementoActual=iteradorTransiciones.next();
 		 
 		 coincide1 =elementoActual.first().equals(configuracion.estadoactual);
-		 coincide2 =configuracion.indicecadena<configuracion.cadena.length()&&elementoActual.second().equals(cadena.charAt(indicecadena));
+		 coincide2 =elementoActual.second().equals(cadena.charAt(indicecadena));
 		 coincide4 = elementoActual.second().equals(Lambda);		 
 		 coincide3 =elementoActual.third().equals(topePila)||elementoActual.third().equals(Joker);
 		 
 		 
 		 if(coincide1&&coincide2&&coincide3&&!coincide4){
 			 
+			 System.out.println("Transicion (no lambda) COMPATIBLE "+elementoActual.toString());
 			 result.add(aplicarTransicion(configuracion,elementoActual));
 		 }
 		 
 		 if(coincide1&&coincide4&&coincide3&&!coincide2){
+			 System.out.println("Transicion lambda COMPATIBLE");
 			 result.add(aplicarTransicion(configuracion,elementoActual));
 		 }
 		 
 	}
 	
+	System.out.println(result.toString());
 	return result;
 
 	
@@ -166,6 +177,7 @@ private LinkedList<Configuracion> proximasConfiguraciones(Configuracion configur
 private Configuracion aplicarTransicion(Configuracion configuracion,
 		Quintuple<State, Character, Character, String, State> transicion) {
 		Stack<Character> nuevostack = (Stack<Character>) configuracion.stackactual.clone();
+		System.out.println("En la config "+configuracion.toString()+" se va a aplicar la transicion "+transicion.toString());
 		State nuevoestado =transicion.fifth();
 		Character caracterpop =nuevostack.pop();
 		int nuevoindicecadena = configuracion.indicecadena;
@@ -199,11 +211,12 @@ public boolean rep_ok() {
 public State newState(){
         int i=0;
         State estado = new State("q"+i);
+        //System.out.println("nuevos posible estado: "+estado.toString());
         while(this.existeEnEstados(estado)) {
-
+          //      System.out.println("estado rechazado");
                 i++;
                 estado = new State("q"+i);
-
+                //System.out.println("nuevos posible estado: "+estado.toString());
         }
         this.states.add(estado);
         return estado;
@@ -221,10 +234,10 @@ public boolean existeEnEstados(State elementoprueba){
 }
 
 public void toPilaVacia(){
-
+    //System.out.println("va a crear los dos estados");
     State nuevoinicial = newState();
     State nuevofinal =  newState();
-
+    //System.out.println("creo los estados");
 
     Character caracterinicialnuevo = encontrarCaracterNoUsado();
 
@@ -233,10 +246,10 @@ public void toPilaVacia(){
     this.stackAlphabet.add(caracterinicialnuevo);
     Iterator<State> iteradorEstados =this.finalStates.iterator();
     while(iteradorEstados.hasNext()) {
-
+        //    System.out.println("while to pila vacia");
             actualIter = iteradorEstados.next();
             if((!actualIter.equals(nuevofinal))&&(!actualIter.equals(nuevoinicial))) {
-
+          //  	System.out.println("ENTRO AL IF TOpILAVACIA()");
                     nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,Joker,""+Lambda,nuevofinal);
                     this.transitions.add(nuevatransicion);
             }
@@ -261,11 +274,11 @@ public void toPilaVacia(){
 }
 
 public void toEstadoFinal(){
-
+   //     System.out.println("va a crear los dos estados");
 
         State nuevoinicial = newState();
         State nuevofinal =  newState();
-
+     //   System.out.println("creo los estados");
 
         Character caracterinicialnuevo = encontrarCaracterNoUsado();
         Iterator<State> iteradorEstados =this.states.iterator();
@@ -274,6 +287,7 @@ public void toEstadoFinal(){
         this.stackAlphabet.add(caracterinicialnuevo);
 
         while(iteradorEstados.hasNext()) {
+       //         System.out.println("while toEStadoFinal");
                 actualIter = iteradorEstados.next();
                 if(!actualIter.equals(nuevofinal)&&!actualIter.equals(nuevoinicial)) {
                         nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,this.stackInitial,""+Lambda,nuevofinal);
@@ -326,6 +340,9 @@ public static NFAPila gramaticaToAutomataPila(String[] gramatica){
     System.out.println(terminales.toString());
     System.out.println("creacion de transiciones para renglones de no terminales");
     
+    
+    
+    
     int j =0;
     i=0;
     int k=0;
@@ -357,9 +374,10 @@ public static NFAPila gramaticaToAutomataPila(String[] gramatica){
     
     
     Iterator<Quintuple<State, Character, Character, String, State> > iteradorDeltas = transiciones.iterator();
-
+    //System.out.println("Se creo el iterador que recorrera el set de quintuples para armar los alfabetos");
     while (iteradorDeltas.hasNext()) {
             Quintuple<State, Character, Character, String, State> elemento = iteradorDeltas.next();
+            //System.out.println(elemento.toString());
             alfabeto.add(elemento.second());
             alfabetoPila.add(elemento.third());
             int indiceAuxiliar = 0;

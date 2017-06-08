@@ -31,17 +31,32 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/Main.java" title="Main.java" tooltip="AutomataPila No Deterministico/src/automata/Main.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Main.java" partName="Main.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/Main.java" title="Main.java" tooltip="AutomataPila No Deterministico/src/automata/Main.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AutomataPila No Deterministico/src/automata/Main.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3408" selectionTopPixel="1524"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="608" selectionTopPixel="75"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NFAPila.java" partName="NFAPila.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/NFAPila.java" title="NFAPila.java" tooltip="AutomataPila No Deterministico/src/automata/NFAPila.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NFAPila.java" partName="NFAPila.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/NFAPila.java" title="NFAPila.java" tooltip="AutomataPila No Deterministico/src/automata/NFAPila.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AutomataPila No Deterministico/src/automata/NFAPila.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2966" selectionTopPixel="1245"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="13223" selectionTopPixel="6141"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="State.java" partName="State.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/State.java" title="State.java" tooltip="AutomataPila No Deterministico/src/automata/State.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AutomataPila No Deterministico/src/automata/State.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="895" selectionTopPixel="351"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DFAPila.java" partName="DFAPila.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/DFAPila.java" title="DFAPila.java" tooltip="AutomataPila No Deterministico/src/automata/DFAPila.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AutomataPila No Deterministico/src/automata/DFAPila.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AP.java" partName="AP.java" path="/home/vale/Escritorio/automatas TP/AutomataPila No Deterministico/src/automata/AP.java" title="AP.java" tooltip="AutomataPila No Deterministico/src/automata/AP.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/AutomataPila No Deterministico/src/automata/AP.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -78,8 +93,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Warnings (19 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="186" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="589"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -259,7 +273,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.19261992" ratioLeft="261" ratioRight="1094" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.82149047" ratioLeft="474" ratioRight="103" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.87001735" ratioLeft="502" ratioRight="75" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -301,103 +315,11 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/automata/NFAPila.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/snippet/Snippet.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/automata/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/automata/Main.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/automata/State.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/automata/DFAPila.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/AutomataPila No Deterministico/src/automata/AP.java"/>
 </editors>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="14479" y="6"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="10083" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2379" y="16"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3068" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3143" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3518" y="23"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4583" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4051" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4873" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4872" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4753" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4752" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4716" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2014" y="7"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4962" y="17"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4305" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4962" y="17"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="4320" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2379" y="16"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3076" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3518" y="23"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="7927" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3518" y="23"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="5616" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2379" y="16"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2507" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2314" y="0"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="2014" y="7"/>
-</item>
-<item historyLabel="NFAPila.java" index="0">
-<position info="not_deleted" x="3318" y="0"/>
-</item>
 <item historyLabel="NFAPila.java" index="0">
 <position info="not_deleted" x="4962" y="17"/>
 </item>
@@ -449,8 +371,104 @@
 <item historyLabel="Main.java" index="2">
 <position info="not_deleted" x="3408" y="0"/>
 </item>
-<item active="true" historyLabel="NFAPila.java" index="0">
+<item historyLabel="NFAPila.java" index="0">
 <position info="not_deleted" x="2394" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="3465" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="8648" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="3465" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="9949" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="3356" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="9949" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="11787" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="7580" y="13"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="9137" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="12639" y="5"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="3226" y="23"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="4458" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="2310" y="16"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="3660" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="3676" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="3986" y="132"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="4490" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="284" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="3356" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="1376" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="1375" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="1431" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="608" y="10"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="13223" y="0"/>
+</item>
+<item historyLabel="State.java" index="4">
+<position info="not_deleted" x="895" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="13223" y="0"/>
+</item>
+<item historyLabel="Main.java" index="3">
+<position info="not_deleted" x="608" y="10"/>
+</item>
+<item historyLabel="DFAPila.java" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="AP.java" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="NFAPila.java" index="0">
+<position info="not_deleted" x="13223" y="0"/>
+</item>
+<item active="true" historyLabel="Main.java" index="3">
+<position info="not_deleted" x="608" y="10"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -469,6 +487,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="AP.java" tooltip="AutomataPila No Deterministico/src/automata/AP.java">
+<persistable path="/AutomataPila No Deterministico/src/automata/AP.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DFAPila.java" tooltip="AutomataPila No Deterministico/src/automata/DFAPila.java">
+<persistable path="/AutomataPila No Deterministico/src/automata/DFAPila.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="State.java" tooltip="AutomataPila No Deterministico/src/automata/State.java">
+<persistable path="/AutomataPila No Deterministico/src/automata/State.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Snippet.java" tooltip="AutomataPila No Deterministico/src/snippet/Snippet.java">
 <persistable path="/AutomataPila No Deterministico/src/snippet/Snippet.java"/>
 </file>

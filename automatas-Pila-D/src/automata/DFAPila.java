@@ -195,7 +195,7 @@ public void toPilaVacia(){
     //System.out.println("creo los estados");
 
     Character caracterinicialnuevo = encontrarCaracterNoUsado();
-    
+
     Quintuple<State, Character,Character,String, State> nuevatransicion =null;
     State actualIter =null;
     this.stackAlphabet.add(caracterinicialnuevo);
@@ -209,17 +209,17 @@ public void toPilaVacia(){
                     this.transitions.add(nuevatransicion);
             }
     }
-    
-    
+
+
     String strNuevaTrans = ""+this.stackInitial+""+caracterinicialnuevo;
     nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevoinicial,Lambda,caracterinicialnuevo,strNuevaTrans,this.initial);
     this.transitions.add(nuevatransicion);
-    
+
     nuevatransicion = new Quintuple<State, Character,Character,String, State> (nuevofinal,Lambda,Joker,""+Lambda,nuevofinal);
     this.transitions.add(nuevatransicion);
-    
+
     this.finalStates.clear();
-    
+
     this.initial=nuevoinicial;
     this.stackInitial=caracterinicialnuevo;
 
@@ -245,7 +245,7 @@ public void toEstadoFinal(){
        //         System.out.println("while toEStadoFinal");
                 actualIter = iteradorEstados.next();
                 if(!actualIter.equals(nuevofinal)&&!actualIter.equals(nuevoinicial)) {
-                        nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,caracterinicialnuevo,""+Lambda,nuevofinal);
+                        nuevatransicion = new Quintuple<State, Character,Character,String, State> (actualIter,Lambda,this.stackInitial,""+Lambda,nuevofinal);
                         this.transitions.add(nuevatransicion);
                 }
         }
